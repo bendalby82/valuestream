@@ -216,28 +216,32 @@ function deleteRow(row)
     parseTable();
 }
 
-function addRow()
+function addRow(row)
 {
     //console.log( 'hi');
     var x=document.getElementById('tableValueStream');
-    var new_row = x.rows[1].cloneNode(true);
     var len = x.rows.length;
-    new_row.cells[0].innerHTML = len;
-    
-    var inp1 = new_row.cells[1].getElementsByTagName('input')[0];
-    inp1.id += len;
-    inp1.value = '';
-    var inp2 = new_row.cells[2].getElementsByTagName('input')[0];
-    inp2.id += len;
-    inp2.value = '';
-    var inp3 = new_row.cells[3].getElementsByTagName('input')[0];
-    inp3.id += len;
-    inp3.value = '';
-    var inp4 = new_row.cells[4].getElementsByTagName('input')[0];
-    inp4.id += len;
-    inp4.value = '';
-    x.appendChild( new_row );
-    document.getElementById(inp1.id).focus();
+    var i=row.parentNode.parentNode.rowIndex;
+    if (i==len-1){
+	    var new_row = x.rows[1].cloneNode(true);
+	    
+	    new_row.cells[0].innerHTML = len;
+	    
+	    var inp1 = new_row.cells[1].getElementsByTagName('input')[0];
+	    inp1.id += len;
+	    inp1.value = '';
+	    var inp2 = new_row.cells[2].getElementsByTagName('input')[0];
+	    inp2.id += len;
+	    inp2.value = '';
+	    var inp3 = new_row.cells[3].getElementsByTagName('input')[0];
+	    inp3.id += len;
+	    inp3.value = '';
+	    var inp4 = new_row.cells[4].getElementsByTagName('input')[0];
+	    inp4.id += len;
+	    inp4.value = '';
+	    x.appendChild( new_row );
+	    document.getElementById(inp1.id).focus();
+    }
 }
 
 function parseTable(){
@@ -287,7 +291,7 @@ function saveImage() {
 </head>
 <body onload="testCall()">
 
-<a href="https://github.com/bendalby82/blockdiagrest"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+<a href="https://github.com/bendalby82/valuestream"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 
 <!--http://diveintohtml5.info/canvas.html-->
 <h2 style="font-family: helvetica;">Value Stream Editor</h2>
@@ -314,7 +318,7 @@ function saveImage() {
         <td><input size=25 type="text" id="boxStepName" onfocusout="parseTable()"/></td>
         <td><input size=10 type="text" id="boxStepWorkTime" onfocusout="parseTable()"/></td>
         <td><input size=10 type="text" id="boxStepElapsedTime" onfocusout="parseTable()"/></td>
-        <td><input size=10 type="text" id="boxStepWaitTime" onfocusout="parseTable();addRow();"/></td>
+        <td><input size=10 type="text" id="boxStepWaitTime" onfocusout="parseTable();addRow(this);"/></td>
         <td><input type="button" id="delValueStreamRow" value="Delete" onclick="deleteRow(this)"/></td>
     </tr>
 </table>
