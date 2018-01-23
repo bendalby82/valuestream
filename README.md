@@ -1,6 +1,6 @@
 # Value Stream Mapping Tool
 A pure client-side web site to quickly generate value stream maps. Tested on Chrome 60.0.3112.101 running on Mac.
-![](https://github.com/bendalby82/valuestream/blob/master/docs/example-value-stream-map.png)  
+[![](https://github.com/bendalby82/valuestream/blob/master/docs/example-value-stream-map.png)](https://bendalby82.github.io/valuestream/)   
 Published to [https://bendalby82.github.io/valuestream/](https://bendalby82.github.io/valuestream/)  
 ## Usage Notes  
 1. Set the box color to any valid hex value, and the font box to a suitable web value  
