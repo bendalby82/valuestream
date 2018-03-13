@@ -6,7 +6,7 @@ Published to [https://bendalby82.github.io/valuestream/](https://bendalby82.gith
 1. Set the box color to any valid hex value, and the font box to a suitable web value  
 2. Use the 'Tab' key to step through the table. When you leave the final cell in the final row, a new row will be added  
 3. The 'Value Stream as Code' textbox will be dynamically updated as you change the table  
-4. The 'Value Stream as Code' textbox can also be edited directly - this reverses the flow so that table will update to reflect your changes when you levae the textbox
+4. The 'Value Stream as Code' textbox can also be edited directly - this reverses the flow so that table will update to reflect your changes when you leave the textbox
 5. 'Save as PNG' will open a new tab with a 'Save As' dialog for a PNG version of the Value Stream Map 
 ## Future  
 1. Migrate to Raphaël to generate cross-browser images  
