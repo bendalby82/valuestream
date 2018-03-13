@@ -274,6 +274,63 @@ function parseTable(){
 
 }
 
+
+function loadTable(){
+	var valueStreamData = document.getElementById("jsondata").value;
+	var table=document.getElementById('tableValueStream');
+	var boxColor=document.getElementById('fmtBoxColor');
+	var boxFont=document.getElementById('fmtFont');
+	
+	var jsonValueStream = JSON.parse(valueStreamData);
+
+	//Clear current table
+	var currentRows = table.rows.length;
+	while (currentRows > 2) {
+		table.deleteRow(currentRows-1);
+		currentRows--;
+	}
+
+	//Load data from JSON
+	boxColor.value = jsonValueStream.format.BoxColor;
+	boxFont.value = jsonValueStream.format.Font;	
+
+	rowCount = jsonValueStream.measurements.length;
+
+	for (var i = 0; i < rowCount; i++){
+		//Add row if needed
+		if (i>0){
+			var len = table.rows.length;
+		    var new_row = table.rows[1].cloneNode(true);
+		    
+		    new_row.cells[0].innerHTML = len;
+		    
+		    var inp1 = new_row.cells[1].getElementsByTagName('input')[0];
+		    inp1.id += len;
+		    //inp1.value = '';
+		    var inp2 = new_row.cells[2].getElementsByTagName('input')[0];
+		    inp2.id += len;
+		    //inp2.value = '';
+		    var inp3 = new_row.cells[3].getElementsByTagName('input')[0];
+		    inp3.id += len;
+		    //inp3.value = '';
+		    var inp4 = new_row.cells[4].getElementsByTagName('input')[0];
+		    inp4.id += len;
+		    //inp4.value = '';
+		    table.appendChild( new_row );			
+		} 
+
+		row = table.rows[i+1];
+
+		//Set data
+		row.cells[1].firstChild.value = jsonValueStream.measurements[i].StepName;
+		row.cells[2].firstChild.value = jsonValueStream.measurements[i].StepWork;
+		row.cells[3].firstChild.value = jsonValueStream.measurements[i].StepElapsed;
+		if (i>0) row.cells[4].firstChild.value = jsonValueStream.measurements[i].StepWait;
+
+	}
+
+}
+
 //https://stackoverflow.com/questions/30694433/how-to-give-browser-save-image-as-option-to-button
 function saveImage() {
 	var canvas = document.getElementById("a");
@@ -327,9 +384,9 @@ function saveImage() {
 <canvas id="a" width="800" height="140" class="clear" style="border:1px dotted;float:none;"></canvas>
 <p />
 <input type="button" id="btnSaveAs" value="Save as PNG" onclick="saveImage();" /><br/>
-
+<input type="button" id="btnLoadTable" value="Load Table" onclick="loadTable();" /><br/>
 <h2 style="font-family: helvetica;">Value Stream as Code</h2>
-<textarea onfocusout="refreshDrawing()" rows="10" cols="62" id="jsondata" style="font-family: courier;"> </textarea>
+<textarea onfocusout="refreshDrawing();loadTable();" rows="10" cols="62" id="jsondata" style="font-family: courier;"> </textarea>
 <p><em>Check me into source code control</em></p>
 
 </body>
